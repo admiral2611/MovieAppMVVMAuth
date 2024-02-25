@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/splashScreen">
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.admiral26.movieappmvvmauth.presentation.splash.SplashScreen"
+        android:label="screen_splash"
+        tools:layout="@layout/screen_splash" >
+        <action
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/signUpScreen"
+            android:id="@+id/action_splashScreen_to_signUpScreen"
+            app:destination="@id/signUpScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpScreen"
+        android:name="com.admiral26.movieappmvvmauth.presentation.singUp.SignUpScreen"
+        android:label="SignUpScreen" >
+        <action
+            android:id="@+id/action_signUpScreen_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/homePage"
+        android:name="com.admiral26.movieappmvvmauth.presentation.home.HomePage"
+        android:label="page_home"
+        tools:layout="@layout/page_home" />
+</navigation>
