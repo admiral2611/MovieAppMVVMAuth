@@ -1,20 +1,22 @@
-package com.admiral26.movieappmvvmauth.data.model.home.footer
+package com.admiral26.movieappmvvmauth.data.model.home.header
 
 
 import com.admiral26.movieappmvvmauth.data.model.BaseModel
 import com.google.gson.annotations.SerializedName
 
-data class FootRespons(
+data class HeaderResponse(
+    @SerializedName("dates")
+    val dates: Dates,
     @SerializedName("page")
     val page: Int, // 1
     @SerializedName("results")
-    val resultFoots: List<ResultFoot>,
+    val resultHeads: List<ResultHead>,
     @SerializedName("total_pages")
-    val totalPages: Int, // 42636
+    val totalPages: Int, // 177
     @SerializedName("total_results")
-    val totalResults: Int // 852709
+    val totalResults: Int // 3540
 ): BaseModel() {
     override fun getType(): Int {
-        return FOOT_LINE
+        return TOP_HEAD_LINE
     }
 }

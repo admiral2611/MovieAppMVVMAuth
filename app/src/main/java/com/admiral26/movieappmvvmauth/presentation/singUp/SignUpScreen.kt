@@ -6,15 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MediatorLiveData
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral26.movieappmvvmauth.base.BaseFragment
 import com.admiral26.movieappmvvmauth.R
 import com.admiral26.movieappmvvmauth.data.model.auth.LoginRequest
 import com.admiral26.movieappmvvmauth.data.model.auth.SessionRequest
-import com.admiral26.movieappmvvmauth.data.model.home.footer.FootRespons
-import com.admiral26.movieappmvvmauth.data.model.home.header.HeaderRespons
 import com.admiral26.movieappmvvmauth.databinding.ScreenSignUpBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -63,18 +60,12 @@ class SignUpScreen : BaseFragment(R.layout.screen_sign_up) {
             if (userName.isBlank() || password.isBlank()) {
                 binding.progresSignUp.visibility = View.GONE
                 return@setOnClickListener
-
             }
-
             token?.let {
                 val body = LoginRequest(username = userName, password = password, requestToken = it)
                 viewModel.login(body)
             }
-
-
         }
-
-
         binding.signuptostart.setOnClickListener {
             val url = "https://www.themoviedb.org/signup"
             val intent = Intent(Intent.ACTION_VIEW)

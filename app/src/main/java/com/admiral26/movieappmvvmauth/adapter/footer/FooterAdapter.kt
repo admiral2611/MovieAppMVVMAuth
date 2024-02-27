@@ -3,9 +3,11 @@ package com.admiral26.movieappmvvmauth.adapter.footer
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.admiral26.movieappmvvmauth.data.model.home.footer.FootResponse
 import com.admiral26.movieappmvvmauth.data.model.home.footer.ResultFoot
 import com.admiral26.movieappmvvmauth.databinding.ItemFooterBinding
 import com.bumptech.glide.Glide
+
 
 class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
 
@@ -25,8 +27,10 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
             binding.title.text = data.originalTitle
             binding.textData.text = data.releaseDate
             Glide.with(binding.shapeableImageView.context)
-                .load("https://image.tmdb.org/t/p/original/${data.posterPath}")
+                .load("https://image.tmdb.org/t/p/original${data.posterPath}")
                 .into(binding.shapeableImageView)
+
+
         }
 
     }
@@ -34,7 +38,7 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FooterAdapter.FootViewHolder {
+    ): FootViewHolder {
 
         return FootViewHolder(
             ItemFooterBinding.inflate(

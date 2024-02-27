@@ -8,6 +8,7 @@ import com.admiral26.movieappmvvmauth.data.model.home.header.ResultHead
 import com.admiral26.movieappmvvmauth.databinding.ItemHeaderBinding
 import com.bumptech.glide.Glide
 
+
 class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
     private val data = ArrayList<ResultHead>()
 
@@ -25,9 +26,13 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
         fun bindData(data: ResultHead) {
             binding.titleFilm.text = data.originalTitle
             binding.ratingHed.text = data.voteAverage.toString()
+
             Glide.with(binding.cardView.context)
-                .load("https://image.tmdb.org/t/p/original/${data.posterPath}")
+                .load("https://image.tmdb.org/t/p/original${data.posterPath}")
                 .into(binding.cardView)
+
+
+
         }
 
     }
@@ -36,7 +41,7 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HeaderAdapter.HeaderViewHolder {
+    ): HeaderViewHolder {
         return HeaderViewHolder(
             ItemHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
