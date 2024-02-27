@@ -21,16 +21,17 @@ class AuthRepositoryImp @Inject constructor(
         }
     }
 
+
     override suspend fun login(data: LoginRequest): ResultWrapper<TokenResponse?, Any?> {
         return parseResponse(Dispatchers.IO) {
             service.login(data, API_KEY)
         }
     }
 
+
     override suspend fun createSession(token: SessionRequest): ResultWrapper<SessionRespons?, Any?> {
         return parseResponse(Dispatchers.IO) {
             service.createSession(token, API_KEY)
         }
     }
-
 }

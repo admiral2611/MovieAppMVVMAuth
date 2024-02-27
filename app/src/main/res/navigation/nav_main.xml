@@ -20,12 +20,12 @@
         android:name="com.admiral26.movieappmvvmauth.presentation.singUp.SignUpScreen"
         android:label="SignUpScreen" >
         <action
-            android:id="@+id/action_signUpScreen_to_homePage"
-            app:destination="@id/homePage" />
+            android:id="@+id/action_signUpScreen_to_mainScreen2"
+            app:destination="@id/mainScreen2" />
     </fragment>
     <fragment
-        android:id="@+id/homePage"
-        android:name="com.admiral26.movieappmvvmauth.presentation.home.HomePage"
-        android:label="page_home"
-        tools:layout="@layout/page_home" />
+        android:id="@+id/mainScreen2"
+        android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.MainScreen"
+        android:label="screen_main"
+        tools:layout="@layout/screen_main" />
 </navigation>

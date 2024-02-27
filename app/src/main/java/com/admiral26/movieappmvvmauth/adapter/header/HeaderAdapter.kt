@@ -36,7 +36,7 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HeaderViewHolder {
+    ): HeaderAdapter.HeaderViewHolder {
         return HeaderViewHolder(
             ItemHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )

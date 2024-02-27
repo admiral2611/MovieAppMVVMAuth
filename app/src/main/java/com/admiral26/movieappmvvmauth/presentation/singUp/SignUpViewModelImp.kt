@@ -10,7 +10,6 @@ import com.admiral26.movieappmvvmauth.data.model.auth.SessionRespons
 import com.admiral26.movieappmvvmauth.data.model.auth.TokenResponse
 import com.admiral26.movieappmvvmauth.data.source.local.LocalStorage
 import com.admiral26.movieappmvvmauth.domain.repository.AuthRepository
-import com.admiral26.movieappmvvmauth.presentation.singUp.SignUpViewModel
 import com.admiral26.movieappmvvmauth.util.ResultWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModelImp @Inject constructor(
     private val repository: AuthRepository,
-    private val cashe:LocalStorage) :
+    private val cache:LocalStorage) :
     SignUpViewModel,
     ViewModel() {
 
@@ -92,7 +91,7 @@ class SignUpViewModelImp @Inject constructor(
     }
 
     override fun saveSession(session: String) {
-        cashe.sessionId = session
-        cashe.isFirst = false
+        cache.sessionId = session
+        cache.isFirst = false
     }
 }

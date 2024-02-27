@@ -1,6 +1,7 @@
 package com.admiral26.movieappmvvmauth.presentation.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MediatorLiveData
@@ -26,6 +27,7 @@ class HomePage : BaseFragment(R.layout.page_home) {
         viewModel.getFooter()
         setAdapter()
         observe()
+
     }
 
     private fun setAdapter() {
@@ -48,9 +50,11 @@ class HomePage : BaseFragment(R.layout.page_home) {
         data.observe(viewLifecycleOwner) {
             val data1 = it.first
             val data2 = it.second
+            Log.d("data11", "observe: ${data1}\n${data2}")
 
             if (data1 != null && data2 != null){
                 adapter.addData(data1)
+                Log.d("data1", "observe: $data1")
                 adapter.addData(data2)
             }
         }

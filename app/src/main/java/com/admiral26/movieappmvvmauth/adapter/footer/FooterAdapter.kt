@@ -27,8 +27,6 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
             Glide.with(binding.shapeableImageView.context)
                 .load("https://image.tmdb.org/t/p/original/${data.posterPath}")
                 .into(binding.shapeableImageView)
-
-
         }
 
     }
@@ -36,7 +34,7 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FootViewHolder {
+    ): FooterAdapter.FootViewHolder {
 
         return FootViewHolder(
             ItemFooterBinding.inflate(
