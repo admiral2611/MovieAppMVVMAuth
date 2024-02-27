@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.admiral26.movieappmvvmauth.PageSave
-import com.admiral26.movieappmvvmauth.PagesTicket
-import com.admiral26.movieappmvvmauth.presentation.home.HomePage
+import com.admiral26.movieappmvvmauth.presentation.main_screen.save.PageSave
+import com.admiral26.movieappmvvmauth.presentation.main_screen.ticket.PagesTicket
+import com.admiral26.movieappmvvmauth.presentation.main_screen.home.HomePage
 
 class MainAdapter(fm: FragmentManager, lc: Lifecycle) : FragmentStateAdapter(fm, lc) {
     override fun getItemCount(): Int {

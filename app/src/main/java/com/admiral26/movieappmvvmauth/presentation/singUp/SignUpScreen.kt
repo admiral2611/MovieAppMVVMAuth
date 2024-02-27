@@ -56,11 +56,14 @@ class SignUpScreen : BaseFragment(R.layout.screen_sign_up) {
     private fun setListen() {
 
         binding.registerButton.setOnClickListener {
+            binding.progresSignUp.visibility = View.VISIBLE
             val userName = binding.username.text?.trim().toString()
             val password = binding.password.text?.trim().toString()
 
             if (userName.isBlank() || password.isBlank()) {
+                binding.progresSignUp.visibility = View.GONE
                 return@setOnClickListener
+
             }
 
             token?.let {

@@ -1,4 +1,4 @@
-package com.admiral26.movieappmvvmauth.presentation.home
+package com.admiral26.movieappmvvmauth.presentation.main_screen.home
 
 import androidx.lifecycle.LiveData
 import com.admiral26.movieappmvvmauth.data.model.home.footer.FootRespons

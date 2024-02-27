@@ -14,6 +14,9 @@
             app:popUpTo="@id/signUpScreen"
             android:id="@+id/action_splashScreen_to_signUpScreen"
             app:destination="@id/signUpScreen" />
+        <action
+            android:id="@+id/action_splashScreen_to_mainScreen2"
+            app:destination="@id/mainScreen2" />
     </fragment>
     <fragment
         android:id="@+id/signUpScreen"

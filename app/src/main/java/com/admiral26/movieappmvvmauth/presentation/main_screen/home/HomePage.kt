@@ -1,4 +1,4 @@
-package com.admiral26.movieappmvvmauth.presentation.home
+package com.admiral26.movieappmvvmauth.presentation.main_screen.home
 
 import android.os.Bundle
 import android.util.Log
