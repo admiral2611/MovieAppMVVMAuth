@@ -3,4 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="baseColorHint">#E60E1725</color>
+    <color name="main_color">#1F1D28</color>
+    <color name="orange">#FF7427</color>
+    <color name="yellow">#FFC107</color>
+    <color name="dark_blue">#121212</color>
+    <color name="green_main">#32A873</color>
 </resources>

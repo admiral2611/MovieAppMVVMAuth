@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_blue"
     android:orientation="vertical"
     tools:context=".presentation.main_screen.MainScreen">
 
@@ -10,6 +11,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="#B9373535"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,19 +30,18 @@
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_slab"
             android:text="Movie App"
-
-            android:textColor="#000"
+            android:textColor="@color/green_main"
             android:textSize="18sp" />
 
 
-        <ImageView
-            android:id="@+id/notification"
+    <!--    <ImageView
+            android:id="@+id/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|end"
             android:layout_marginEnd="15dp"
             android:contentDescription="notification"
-            android:src="@drawable/baseline_notifications_none_24" />
+            android:src="@drawable/baseline_account_box_24" />-->
     </FrameLayout>
 
     <androidx.viewpager2.widget.ViewPager2
@@ -53,10 +54,10 @@
         android:id="@+id/bottomnavigationview"
         android:layout_width="match_parent"
         android:layout_height="68dp"
-        android:background="@color/white"
+        android:background="@color/dark_blue"
         app:itemIconSize="35dp"
         app:itemIconTint="@color/text_nav_bottom"
-        app:itemRippleColor="#1AFFFFFF"
+        app:itemRippleColor="#719173"
         app:itemTextColor="@color/white"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu" />

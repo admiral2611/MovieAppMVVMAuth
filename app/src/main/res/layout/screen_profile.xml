@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".presentation.main_screen.profil.ProfileScreen">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+     <!--   <ImageView
+            android:id="@+id/back"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/baseline_arrow_back_24" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_slab"
+            android:text="Your Profile"
+            android:textColor="@color/green_main"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <!--<ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/baseline_settings_24" />-->
+
+    </FrameLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/userProfilePhoto"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="48dp"
+        android:elevation="40dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:shapeAppearanceOverlay="@style/Profile" />
+
+    <ProgressBar
+        android:id="@+id/progres_image_profil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green_main"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/userProfilePhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/userProfilePhoto" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profil_name"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#16FFFFFF"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfilePhoto">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30sp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="Name:"
+            android:textColor="@color/green_main"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_slab"
+            android:maxLines="2"
+            android:textColor="@color/green_main"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="User Name:"
+            android:textColor="@color/green_main"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_slab"
+            android:maxLines="2"
+            android:textColor="@color/green_main"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/logOut"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/shape_corner_log_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/log_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/baseline_logout_24"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="LogOut"
+            android:textColor="@color/green_main"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

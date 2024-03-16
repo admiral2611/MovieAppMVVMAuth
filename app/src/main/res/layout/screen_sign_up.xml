@@ -36,7 +36,7 @@
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="40sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/roboto_slab"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,15 +74,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:textColorHint="#D0F1F1F1"
-                app:boxStrokeColor="@color/white"
-                app:startIconTint="#ABFFFFFF">
+                android:textColorHint="@color/green_main"
+                app:boxStrokeColor="@color/green_main"
+                app:startIconTint="@color/green_main">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Username"
+                    android:textColorHint="@color/green_main"
+                    android:fontFamily="@font/roboto_slab"
+                    android:drawableStart="@drawable/baseline_account_box_24"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="@color/green_main"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/white"
@@ -95,28 +100,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:textColorHint="#D0F1F1F1"
-                app:boxStrokeColor="@color/white"
-                app:startIconTint="#ABFFFFFF">
+                android:textColorHint="@color/green_main"
+                app:boxStrokeColor="@color/green_main"
+                app:startIconTint="@color/green_main">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
+                    android:fontFamily="@font/roboto_slab"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/green_main"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:fontFamily="@font/roboto_slab"
                 android:textSize="20dp"
                 android:layout_margin="32dp"
                 android:background="@drawable/shape_input"

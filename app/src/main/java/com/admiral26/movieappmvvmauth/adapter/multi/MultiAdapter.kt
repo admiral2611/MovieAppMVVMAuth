@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.admiral26.movieappmvvmauth.adapter.footer.FooterAdapter
 import com.admiral26.movieappmvvmauth.adapter.header.HeaderAdapter
 import com.admiral26.movieappmvvmauth.data.model.BaseModel
@@ -11,6 +12,7 @@ import com.admiral26.movieappmvvmauth.data.model.home.footer.FootResponse
 import com.admiral26.movieappmvvmauth.data.model.home.header.HeaderResponse
 import com.admiral26.movieappmvvmauth.databinding.ItemBannerHeaderBinding
 import com.admiral26.movieappmvvmauth.databinding.ItemFooterParentBinding
+import com.admiral26.movieappmvvmauth.util.view_pager_transformation.OverlapSliderTransformer
 
 
 class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -29,7 +31,7 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun addData(data: BaseModel) {
         this.data.add(data)
         this.data.sortBy { it.getType() }
-        notifyItemChanged(this.data.size)
+        notifyItemInserted(this.data.size)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -43,6 +45,8 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bindDataToHeader(data: HeaderResponse) {
             binding.viewPagerHeader.adapter = adapter
+            binding.viewPagerHeader.offscreenPageLimit = 6
+            binding.viewPagerHeader.setPageTransformer(OverlapSliderTransformer(ViewPager2.ORIENTATION_HORIZONTAL))
             adapter.setData(data = data.resultHeads)
 
             itemView.setOnClickListener{

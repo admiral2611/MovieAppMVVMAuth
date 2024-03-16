@@ -1,11 +1,13 @@
 package com.admiral26.movieappmvvmauth.adapter.footer
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.admiral26.movieappmvvmauth.data.model.home.footer.FootResponse
 import com.admiral26.movieappmvvmauth.data.model.home.footer.ResultFoot
 import com.admiral26.movieappmvvmauth.databinding.ItemFooterBinding
+import com.admiral26.movieappmvvmauth.util.getGenre
 import com.bumptech.glide.Glide
 
 
@@ -23,9 +25,13 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(data: ResultFoot) {
-            binding.rating.text = data.voteAverage.toString()
+            binding.rating.text =String.format("%s/10 IMDb", data.voteAverage)
             binding.title.text = data.originalTitle
             binding.textData.text = data.releaseDate
+            Log.d("category1", "bindData: ${data.genreIds}")
+            binding.category1.text = getGenre(data.genreIds[0])
+            binding.category2.text = getGenre(data.genreIds[1])
+            //binding.category3.text = getGenre(data.genreIds[2])
             Glide.with(binding.shapeableImageView.context)
                 .load("https://image.tmdb.org/t/p/original${data.posterPath}")
                 .into(binding.shapeableImageView)

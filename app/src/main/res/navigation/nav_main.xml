@@ -11,10 +11,12 @@
         tools:layout="@layout/screen_splash" >
         <action
             app:popUpToInclusive="true"
-            app:popUpTo="@id/signUpScreen"
+            app:popUpTo="@id/splashScreen"
             android:id="@+id/action_splashScreen_to_signUpScreen"
             app:destination="@id/signUpScreen" />
         <action
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/splashScreen"
             android:id="@+id/action_splashScreen_to_mainScreen2"
             app:destination="@id/mainScreen2" />
     </fragment>
@@ -30,5 +32,17 @@
         android:id="@+id/mainScreen2"
         android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.MainScreen"
         android:label="screen_main"
-        tools:layout="@layout/screen_main" />
+        tools:layout="@layout/screen_main" >
+        <action
+            android:id="@+id/action_mainScreen2_to_profileScreen"
+            app:destination="@id/profileScreen" />
+        <action
+            android:id="@+id/action_mainScreen2_to_signUpScreen"
+            app:destination="@id/signUpScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileScreen"
+        android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.profil.ProfileScreen"
+        android:label="screen_profile"
+        tools:layout="@layout/screen_profile" />
 </navigation>

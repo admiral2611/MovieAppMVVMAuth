@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : BaseFragment(R.layout.screen_splash) {
-    private val viewModel : SplashViewModel by viewModels<SplashViewModelImp>()
+    private val viewModel: SplashViewModel by viewModels<SplashViewModelImp>()
     override fun onCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.getIsFirst()
         observe()
@@ -25,14 +25,15 @@ class SplashScreen : BaseFragment(R.layout.screen_splash) {
     }
 
     private fun observe() {
-        viewModel.isFirstLd.observe(viewLifecycleOwner){
+        viewModel.isFirstLd.observe(viewLifecycleOwner) {
             Log.d("TAGbool", "observe: $it")
             lifecycleScope.launch {
                 delay(4000)
-                if (it){
+               // findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignUpScreen())
+                if (it) {
                     findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignUpScreen())
 
-                }else{
+                } else {
                     findNavController().navigate(SplashScreenDirections.actionSplashScreenToMainScreen2())
                 }
             }

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/homeMenu"
+    <item
+        android:id="@+id/homeMenu"
         android:icon="@drawable/baseline_local_movies_24"
         android:title="films" />
-    <item android:id="@+id/ticketMenu"
-        android:icon="@drawable/baseline_local_offer_24"
-        android:title="ticket"
-
-        />  <item android:id="@+id/saveMenu"
+    <item
+        android:id="@+id/saveMenu"
         android:icon="@drawable/baseline_bookmark_add_24"
-        android:title="bookmark"
+        android:title="bookmark" />
 
-        />
+    <item
+        android:id="@+id/profileMenu"
+        android:icon="@drawable/baseline_account_box_24"
+        android:title="profile" />
 
 </menu>

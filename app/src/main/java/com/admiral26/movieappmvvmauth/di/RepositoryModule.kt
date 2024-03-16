@@ -2,8 +2,10 @@ package com.admiral26.movieappmvvmauth.di
 
 import com.admiral26.movieappmvvmauth.data.repository.AuthRepositoryImp
 import com.admiral26.movieappmvvmauth.data.repository.MovieRepositoryImp
+import com.admiral26.movieappmvvmauth.data.repository.ProfileRepositoryImp
 import com.admiral26.movieappmvvmauth.domain.repository.AuthRepository
 import com.admiral26.movieappmvvmauth.domain.repository.MovieRepository
+import com.admiral26.movieappmvvmauth.domain.repository.ProfileRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +23,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindMovieRepository(repositoryImp: MovieRepositoryImp): MovieRepository
+
+
+    @[Binds Singleton]
+    fun bindProfileRepository(repositoryImp: ProfileRepositoryImp): ProfileRepository
 }

@@ -25,7 +25,7 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
 
         fun bindData(data: ResultHead) {
             binding.titleFilm.text = data.originalTitle
-            binding.ratingHed.text = data.voteAverage.toString()
+            binding.ratingHed.text = String.format("%s/10 IMDb", data.voteAverage)
 
             Glide.with(binding.cardView.context)
                 .load("https://image.tmdb.org/t/p/original${data.posterPath}")
