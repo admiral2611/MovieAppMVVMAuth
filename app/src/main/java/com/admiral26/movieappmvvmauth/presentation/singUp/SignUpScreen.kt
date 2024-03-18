@@ -44,7 +44,7 @@ class SignUpScreen : BaseFragment(R.layout.screen_sign_up) {
         viewModel.sessionLD.observe(this) {
             it?.let {
                 viewModel.saveSession(it.sessionId)
-                findNavController().navigate(SignUpScreenDirections.actionSignUpScreenToMainScreen2())
+                findNavController().navigate(SignUpScreenDirections.actionSignUpScreenToMainScreen())
                 Log.d("TAG11", "observe:homga Kirdi")
             }
         }

@@ -14,6 +14,12 @@ fun ShapeableImageView.avatar(url:String){
         .into(this)
 }
 
+fun ImageView.poster(url:String){
+    Glide.with(this.context)
+        .load("https://image.tmdb.org/t/p/original${url}")
+        .into(this)
+}
+
 val genres = mapOf(
     28 to "Action",
     12 to "Adventure",

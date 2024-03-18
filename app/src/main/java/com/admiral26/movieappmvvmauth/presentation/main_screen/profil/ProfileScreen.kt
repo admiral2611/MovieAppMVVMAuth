@@ -24,20 +24,20 @@ class ProfileScreen : BaseFragment(R.layout.screen_profile) {
         binding.progresImageProfil.visibility = View.VISIBLE
         viewModel.getAllDetail()
         observe()
-       binding.logOut.setOnClickListener{
-           AlertDialog.Builder(requireContext())
-               .setIcon(R.drawable.log)
-               .setTitle("Log Out")
-               .setMessage("Do you want log out ?")
-               .setPositiveButton("Yes") { d, _ ->
-                   viewModel.logOut()
-                   d.dismiss()
-               }
-               .setNegativeButton("No") { d, _ ->
-                   d.cancel()
-               }
-               .show()
-       }
+        binding.logOut.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setIcon(R.drawable.log)
+                .setTitle("Log Out")
+                .setMessage("Do you want log out ?")
+                .setPositiveButton("Yes") { d, _ ->
+                    viewModel.logOut()
+                    d.dismiss()
+                }
+                .setNegativeButton("No") { d, _ ->
+                    d.cancel()
+                }
+                .show()
+        }
     }
 
     private fun observe() {
@@ -59,7 +59,7 @@ class ProfileScreen : BaseFragment(R.layout.screen_profile) {
         viewModel.logOut.observe(viewLifecycleOwner) {
             it?.let {
                 viewModel.deleteSession()
-                findNavController().navigate(MainScreenDirections.actionMainScreen2ToSignUpScreen())
+                findNavController().navigate(MainScreenDirections.actionMainScreenToSignUpScreen())
             }
         }
     }

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 
 class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
     private val data = ArrayList<ResultHead>()
+    var onClick: ((id: Int) -> Unit)? = null
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<ResultHead>) {
@@ -31,8 +32,9 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
                 .load("https://image.tmdb.org/t/p/original${data.posterPath}")
                 .into(binding.cardView)
 
-
-
+            itemView.setOnClickListener {
+                onClick?.invoke(data.id)
+            }
         }
 
     }

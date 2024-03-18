@@ -4,45 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
     app:startDestination="@id/splashScreen">
+
     <fragment
         android:id="@+id/splashScreen"
         android:name="com.admiral26.movieappmvvmauth.presentation.splash.SplashScreen"
         android:label="screen_splash"
         tools:layout="@layout/screen_splash" >
         <action
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/splashScreen"
             android:id="@+id/action_splashScreen_to_signUpScreen"
+            app:popUpTo="@id/splashScreen"
+            app:popUpToInclusive="true"
             app:destination="@id/signUpScreen" />
         <action
+            android:id="@+id/action_splashScreen_to_mainScreen"
             app:popUpToInclusive="true"
             app:popUpTo="@id/splashScreen"
-            android:id="@+id/action_splashScreen_to_mainScreen2"
-            app:destination="@id/mainScreen2" />
+            app:destination="@id/mainScreen" />
     </fragment>
     <fragment
-        android:id="@+id/signUpScreen"
-        android:name="com.admiral26.movieappmvvmauth.presentation.singUp.SignUpScreen"
-        android:label="SignUpScreen" >
+        android:id="@+id/detailScreen"
+        android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.home.detail.DetailScreen"
+        android:label="screen_detail"
+        tools:layout="@layout/screen_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
         <action
-            android:id="@+id/action_signUpScreen_to_mainScreen2"
-            app:destination="@id/mainScreen2" />
+            android:id="@+id/action_detailScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
+        <action
+            android:id="@+id/action_detailScreen_to_actorScreen"
+            app:destination="@id/actorScreen" />
     </fragment>
     <fragment
-        android:id="@+id/mainScreen2"
+        android:id="@+id/mainScreen"
         android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.MainScreen"
         android:label="screen_main"
         tools:layout="@layout/screen_main" >
         <action
-            android:id="@+id/action_mainScreen2_to_profileScreen"
+            android:id="@+id/action_mainScreen_to_profileScreen"
             app:destination="@id/profileScreen" />
         <action
-            android:id="@+id/action_mainScreen2_to_signUpScreen"
+            android:id="@+id/action_mainScreen_to_detailScreen"
+            app:destination="@id/detailScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_signUpScreen"
             app:destination="@id/signUpScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpScreen"
+        android:name="com.admiral26.movieappmvvmauth.presentation.singUp.SignUpScreen"
+        android:label="screen_sign_up"
+        tools:layout="@layout/screen_sign_up" >
+        <action
+            android:id="@+id/action_signUpScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
     </fragment>
     <fragment
         android:id="@+id/profileScreen"
         android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.profil.ProfileScreen"
         android:label="screen_profile"
         tools:layout="@layout/screen_profile" />
+    <fragment
+        android:id="@+id/actorScreen"
+        android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.home.detail.actor.ActorScreen"
+        android:label="screen_actor"
+        tools:layout="@layout/screen_actor" >
+        <argument
+            android:name="actorId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

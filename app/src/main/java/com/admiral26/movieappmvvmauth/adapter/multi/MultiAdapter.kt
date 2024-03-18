@@ -16,7 +16,9 @@ import com.admiral26.movieappmvvmauth.util.view_pager_transformation.OverlapSlid
 
 
 class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var onClick: ((title: String) -> Unit)? = null
+    var onClick: ((id: Int) -> Unit)? = null
+    var headerOnClick: ((id: Int) -> Unit)? = null
+    var footerOnClick: ((id: Int) -> Unit)? = null
 
 
     private val data = ArrayList<BaseModel>()
@@ -45,12 +47,12 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bindDataToHeader(data: HeaderResponse) {
             binding.viewPagerHeader.adapter = adapter
-            binding.viewPagerHeader.offscreenPageLimit = 6
+            binding.viewPagerHeader.offscreenPageLimit = 3
             binding.viewPagerHeader.setPageTransformer(OverlapSliderTransformer(ViewPager2.ORIENTATION_HORIZONTAL))
             adapter.setData(data = data.resultHeads)
 
-            itemView.setOnClickListener{
-                onClick?.invoke(data.toString())
+            adapter.onClick = {
+                onClick?.invoke(it)
             }
         }
     }
@@ -63,6 +65,10 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.rvList.adapter = adapter
             binding.rvList.layoutManager = LinearLayoutManager(binding.root.context)
             adapter.setDataFoot(data = data.resultFoots)
+
+            adapter.onClick = {
+                onClick?.invoke(it)
+            }
         }
     }
 
@@ -91,7 +97,7 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    override fun getItemCount()=data.size
+    override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {

@@ -29,12 +29,11 @@ class SplashScreen : BaseFragment(R.layout.screen_splash) {
             Log.d("TAGbool", "observe: $it")
             lifecycleScope.launch {
                 delay(4000)
-               // findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignUpScreen())
+                //findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignUpScreen())
                 if (it) {
                     findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignUpScreen())
-
                 } else {
-                    findNavController().navigate(SplashScreenDirections.actionSplashScreenToMainScreen2())
+                   findNavController().navigate(SplashScreenDirections.actionSplashScreenToMainScreen())
                 }
             }
         }

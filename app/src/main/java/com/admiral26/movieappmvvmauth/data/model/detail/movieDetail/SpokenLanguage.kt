@@ -1,4 +1,4 @@
-package uz.salikhdev.movedb.core.model.detail
+package com.admiral26.movieappmvvmauth.data.model.detail.movieDetail
 
 
 import com.google.gson.annotations.SerializedName

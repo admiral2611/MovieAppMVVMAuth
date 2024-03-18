@@ -2,7 +2,6 @@ package com.admiral26.movieappmvvmauth.presentation.main_screen
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral26.movieappmvvmauth.R
 import com.admiral26.movieappmvvmauth.adapter.main.MainAdapter
@@ -21,12 +20,8 @@ class MainScreen : BaseFragment(R.layout.screen_main) {
                 R.id.homeMenu -> binding.viewpager.setCurrentItem(0, false)
                 R.id.saveMenu -> binding.viewpager.setCurrentItem(1, false)
                 R.id.profileMenu -> binding.viewpager.setCurrentItem(2, false)
-                // R.id.profileMenu -> binding.viewpager.setCurrentItem(2, false)
             }
             true
         }
-        /* binding.profile.setOnClickListener {
-             findNavController().navigate(MainScreenDirections.actionMainScreen2ToProfileScreen())
-         }*/
     }
 }
