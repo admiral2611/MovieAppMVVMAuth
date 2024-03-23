@@ -15,33 +15,56 @@ import com.admiral26.movieappmvvmauth.data.model.home.footer.FootResponse
 import com.admiral26.movieappmvvmauth.data.model.home.header.HeaderResponse
 import com.admiral26.movieappmvvmauth.databinding.PageHomeBinding
 import com.admiral26.movieappmvvmauth.presentation.main_screen.MainScreenDirections
+import okhttp3.internal.wait
 
 
 class HomePage : BaseFragment(R.layout.page_home) {
 
     private val binding by viewBinding(PageHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels<HomeViewModelImp>()
-    private val data = MediatorLiveData<Pair<HeaderResponse?, FootResponse?>>()
     private val adapter by lazy { MultiAdapter() }
-
+    val data = MediatorLiveData<Pair<HeaderResponse?, FootResponse?>>()
+    //private var isFirstDataAdded = false
 
 
     override fun onCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.getHeader()
-        viewModel.getFooter()
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setAdapter()
         observe()
         listenerActions()
-
+        viewModel.getHeader()
+        viewModel.getFooter()
     }
+
+
 
 
     private fun listenerActions() {
         adapter.onClick = {
             findNavController().navigate(MainScreenDirections.actionMainScreenToDetailScreen(it))
+
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        Log.d("aa11", "onPause: ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("aa11", "onStop: ")
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("aa11", "onResume: ")
+    }
 
     private fun setAdapter() {
         binding.multiRvList.adapter = adapter
@@ -50,28 +73,25 @@ class HomePage : BaseFragment(R.layout.page_home) {
     }
 
 
+
     private fun observe() {
+        var isFirstDataAdded = false
+        data.addSource(viewModel.headerLD) {data1 ->
 
-        data.addSource(viewModel.headerLD) {
-            data.value = Pair(it, data.value?.second)
+                data.value = Pair(data1, data.value?.second)
+
         }
+        data.addSource(viewModel.footerLD) {data2 ->
 
-        data.addSource(viewModel.footerLD) {
-            data.value = Pair(data.value?.first, it)
+                data.value = Pair(data.value?.first, data2)
         }
-
-
 
         data.observe(viewLifecycleOwner) {
-
             val data1 = it.first
             val data2 = it.second
-            Log.d("data11", "observe: ${data1}\n${data2}")
-
             if (data1 != null && data2 != null) {
                 binding.progressHome.visibility = View.GONE
                 adapter.addData(data1)
-                Log.d("data1", "observe: $data1")
                 adapter.addData(data2)
             }
         }

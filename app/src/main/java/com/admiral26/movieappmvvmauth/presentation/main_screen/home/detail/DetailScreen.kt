@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.admiral26.movieappmvvmauth.presentation.main_screen.home.detail
 
 import android.content.Intent
@@ -37,6 +35,9 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
         setAdapter()
         listenerActions()
 
+        /*requireActivity().onBackPressedDispatcher.addCallback{
+            findNavController().navigate(DetailScreenDirections.actionDetailScreenToMainScreen())
+        }*/
     }
 
     private fun listenerActions() {
@@ -70,10 +71,6 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
                 binding.tvVoteAverage.text = it.voteAverage.toString()
                 binding.tvDescriptionValue.text = it.overview
                 binding.tvTaglineTitle.text = it.tagline
-                //binding.budjet.text = "Revenue\n${it.revenue}$"
-                //binding.rating.text = it.voteAverage.toInt().toString()
-                //binding.status.text = "Stastus\n${it.status}"
-                //binding.publishedTime.text = it.releaseDate
             }
         }
 

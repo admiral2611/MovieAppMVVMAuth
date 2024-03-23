@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/images" />
+                 />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivFavorite"
@@ -58,6 +58,7 @@
                 android:id="@+id/ivPoster"
                 android:layout_width="100dp"
                 android:layout_height="130dp"
+                android:src="@drawable/empty_image"
                 android:scaleType="centerCrop" />
 
         </androidx.cardview.widget.CardView>
@@ -73,7 +74,6 @@
             android:fontFamily="@font/montserrat_bold"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="Malifisenta"
             android:textColor="@color/green_main"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -201,7 +201,6 @@
                 android:layout_width="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/green_main"
-                android:text="Crew"
                 app:layout_constraintTop_toBottomOf="@id/rv_list_actor"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="10dp"
