@@ -1,4 +1,4 @@
-package com.admiral26.movieappmvvmauth.adapter.footer
+package com.admiral26.movieappmvvmauth.adapter.see
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +11,10 @@ import com.admiral26.movieappmvvmauth.util.getGenre
 import com.bumptech.glide.Glide
 
 
-class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
-
-    var onClick: ((id: Int) -> Unit)? = null
+class SeeMoreAdapter : RecyclerView.Adapter<SeeMoreAdapter.FootViewHolder>() {
     private val data = ArrayList<ResultFoot>()
-
+    var onClick: ((id: Int) -> Unit)? = null
+    var nextPag: (() -> Unit)? = null
 
     fun setDataFoot(data: List<ResultFoot>) {
         this.data.clear()
@@ -25,7 +24,7 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
 
     fun addData(data: List<ResultFoot>) {
         this.data.addAll(data)
-        notifyItemChanged(this.data.size)
+        notifyItemInserted(this.data.size)
     }
 
     inner class FootViewHolder(private val binding: ItemFooterBinding) :
@@ -46,7 +45,7 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
                 binding.category2.visibility = View.GONE
                 binding.category3.visibility = View.GONE
             }
-            //binding.category3.text = getGenre(data.genreIds[2])
+
             Glide.with(binding.shapeableImageView.context)
                 .load("https://image.tmdb.org/t/p/original${data.posterPath}")
                 .into(binding.shapeableImageView)
@@ -74,6 +73,9 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FootViewHolder, position: Int) {
+        if (data.size - 3 <= position) {
+            nextPag?.invoke()
+        }
         holder.bindData(data[position])
     }
 

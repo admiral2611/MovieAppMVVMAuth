@@ -1,29 +1,29 @@
-package com.admiral26.movieappmvvmauth.adapter.footer
+package com.admiral26.movieappmvvmauth.adapter.save
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.admiral26.movieappmvvmauth.data.model.home.footer.ResultFoot
 import com.admiral26.movieappmvvmauth.databinding.ItemFooterBinding
+import com.admiral26.movieappmvvmauth.room.entity.MovieEntity
 import com.admiral26.movieappmvvmauth.util.getGenre
 import com.bumptech.glide.Glide
 
 
-class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
+class SaveAdapter : RecyclerView.Adapter<SaveAdapter.FootViewHolder>() {
 
     var onClick: ((id: Int) -> Unit)? = null
-    private val data = ArrayList<ResultFoot>()
+    private val data = ArrayList<MovieEntity>()
 
 
-    fun setDataFoot(data: List<ResultFoot>) {
+    fun setDataFoot(data: List<MovieEntity>) {
         this.data.clear()
         this.data.addAll(data.shuffled())
         notifyDataSetChanged()
     }
 
-    fun addData(data: List<ResultFoot>) {
+    fun addData(data: List<MovieEntity>) {
         this.data.addAll(data)
         notifyItemChanged(this.data.size)
     }
@@ -31,21 +31,18 @@ class FooterAdapter : RecyclerView.Adapter<FooterAdapter.FootViewHolder>() {
     inner class FootViewHolder(private val binding: ItemFooterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData(data: ResultFoot) {
+        fun bindData(data: MovieEntity) {
             binding.rating.text = String.format("%s/10 IMDb", data.voteAverage)
             binding.title.text = data.originalTitle
             binding.textData.text = data.releaseDate
             Log.d("category1", "bindData: ${data.genreIds}")
 
-            if (data.genreIds.size >= 3) {
-                binding.category1.text = getGenre(data.genreIds[0])
-                binding.category2.text = getGenre(data.genreIds[1])
-                binding.category3.text = getGenre(data.genreIds[2])
-            } else {
-                binding.category1.text = getGenre(data.genreIds[0])
-                binding.category2.visibility = View.GONE
-                binding.category3.visibility = View.GONE
-            }
+
+            binding.category1.text = data.genreIds?.let { getGenre(it) }
+
+            binding.category2.visibility = View.GONE
+            binding.category3.visibility = View.GONE
+
             //binding.category3.text = getGenre(data.genreIds[2])
             Glide.with(binding.shapeableImageView.context)
                 .load("https://image.tmdb.org/t/p/original${data.posterPath}")

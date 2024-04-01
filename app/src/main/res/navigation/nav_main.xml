@@ -40,7 +40,7 @@
         android:id="@+id/mainScreen"
         android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.MainScreen"
         android:label="screen_main"
-        tools:layout="@layout/screen_main" >
+        tools:layout="@layout/screen_main">
         <action
             android:id="@+id/action_mainScreen_to_profileScreen"
             app:destination="@id/profileScreen" />
@@ -50,6 +50,12 @@
         <action
             android:id="@+id/action_mainScreen_to_signUpScreen"
             app:destination="@id/signUpScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_seeMoreScreen"
+            app:destination="@id/seeMoreScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_pageSave"
+            app:destination="@id/pageSave" />
     </fragment>
     <fragment
         android:id="@+id/signUpScreen"
@@ -69,9 +75,23 @@
         android:id="@+id/actorScreen"
         android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.home.detail.actor.ActorScreen"
         android:label="screen_actor"
-        tools:layout="@layout/screen_actor" >
+        tools:layout="@layout/screen_actor">
         <argument
             android:name="actorId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/seeMoreScreen"
+        android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.home.see_more.SeeMoreScreen"
+        android:label="screen_see_more"
+        tools:layout="@layout/screen_see_more">
+        <action
+            android:id="@+id/action_seeMoreScreen_to_detailScreen"
+            app:destination="@id/detailScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/pageSave"
+        android:name="com.admiral26.movieappmvvmauth.presentation.main_screen.save.PageSave"
+        android:label="save_page"
+        tools:layout="@layout/save_page" />
 </navigation>

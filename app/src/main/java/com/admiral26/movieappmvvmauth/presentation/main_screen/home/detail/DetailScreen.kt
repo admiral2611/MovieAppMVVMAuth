@@ -3,9 +3,9 @@ package com.admiral26.movieappmvvmauth.presentation.main_screen.home.detail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,6 +15,7 @@ import com.admiral26.movieappmvvmauth.adapter.movie.actor.ActorAdapter
 import com.admiral26.movieappmvvmauth.adapter.movie.trailer.TrailerAdapter
 import com.admiral26.movieappmvvmauth.base.BaseFragment
 import com.admiral26.movieappmvvmauth.databinding.ScreenDetailBinding
+import com.admiral26.movieappmvvmauth.room.entity.MovieEntity
 import com.admiral26.movieappmvvmauth.util.poster
 
 
@@ -24,6 +25,8 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
     private val actorAdapter by lazy { ActorAdapter() }
     private val trailerAdapter by lazy { TrailerAdapter() }
     private val viewModel: DetailViewModel by viewModels<DetailViewModelImp>()
+    private lateinit var movieEntity: MovieEntity
+    private var isCheck = false
 
 
     override fun onCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,9 +34,11 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
         viewModel.getDetailMovie(args.id)
         viewModel.getCreditMovie(args.id)
         viewModel.getTrailerMovie(args.id)
+        viewModel.checkIsSave(args.id)
         observe()
         setAdapter()
         listenerActions()
+        // binding.ivFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_black_24dp))
 
         /*requireActivity().onBackPressedDispatcher.addCallback{
             findNavController().navigate(DetailScreenDirections.actionDetailScreenToMainScreen())
@@ -49,6 +54,34 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
             val webIntent =
                 Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=$it"))
             startActivity(webIntent)
+        }
+
+        binding.ivFavorite.setOnClickListener {
+            if (isCheck) {
+                Log.d("save1", "listenerActions: true")
+                val movie = MovieEntity(
+                    movieEntity.id,
+                    movieEntity.genreIds,
+                    movieEntity.originalTitle,
+                    movieEntity.voteAverage,
+                    movieEntity.releaseDate,
+                    movieEntity.posterPath
+                )
+                binding.ivFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_border_black_24dp))
+                viewModel.deleteMovie(movie)
+            } else {
+                Log.d("save1", "listenerActions: false")
+                val movie = MovieEntity(
+                    movieEntity.id,
+                    movieEntity.genreIds,
+                    movieEntity.originalTitle,
+                    movieEntity.voteAverage,
+                    movieEntity.releaseDate,
+                    movieEntity.posterPath
+                )
+                binding.ivFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_black_24dp))
+                viewModel.saveMovie(movie)
+            }
         }
     }
 
@@ -71,6 +104,15 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
                 binding.tvVoteAverage.text = it.voteAverage.toString()
                 binding.tvDescriptionValue.text = it.overview
                 binding.tvTaglineTitle.text = it.tagline
+
+                movieEntity = MovieEntity(
+                    it.id,
+                    it.genres[0].id,
+                    it.title,
+                    it.voteAverage,
+                    it.releaseDate,
+                    it.posterPath
+                )
             }
         }
 
@@ -83,6 +125,15 @@ class DetailScreen : BaseFragment(R.layout.screen_detail) {
         viewModel.trailerLd.observe(viewLifecycleOwner) {
             it?.let {
                 trailerAdapter.setData(it.results)
+            }
+        }
+
+        viewModel.movieIsSave.observe(viewLifecycleOwner) {
+            isCheck = it
+            if (it) {
+                binding.ivFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_black_24dp))
+            } else {
+                binding.ivFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_border_black_24dp))
             }
         }
     }

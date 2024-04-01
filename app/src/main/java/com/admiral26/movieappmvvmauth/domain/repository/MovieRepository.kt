@@ -5,6 +5,6 @@ import com.admiral26.movieappmvvmauth.data.model.home.header.HeaderResponse
 import com.admiral26.movieappmvvmauth.util.ResultWrapper
 
 interface MovieRepository {
-    suspend fun getNowPlaying():ResultWrapper<HeaderResponse?,Any>
-    suspend fun getFootMovie():ResultWrapper<FootResponse?,Any>
+    suspend fun getNowPlaying(): ResultWrapper<HeaderResponse?, Any>
+    suspend fun getFootMovie(page: Int): ResultWrapper<FootResponse?, Any>
 }

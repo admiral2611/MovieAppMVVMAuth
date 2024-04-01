@@ -11,17 +11,18 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class MovieRepositoryImp @Inject constructor(
-    private val service:MovieService
-):MovieRepository {
+    private val service: MovieService
+) : MovieRepository {
     override suspend fun getNowPlaying(): ResultWrapper<HeaderResponse?, Any> {
-        return parseResponse(Dispatchers.IO){
-            service.getNowPlaying(API_KEY)
+        return parseResponse(Dispatchers.IO) {
+            service.getNowPlaying(API_KEY, 15, 1)
         }
     }
 
-    override suspend fun getFootMovie(): ResultWrapper<FootResponse?, Any> {
-        return parseResponse(Dispatchers.IO){
-            service.getPopularMovie(API_KEY)
+
+    override suspend fun getFootMovie(page: Int): ResultWrapper<FootResponse?, Any> {
+        return parseResponse(Dispatchers.IO) {
+            service.getPopularMovie(API_KEY, 15, page)
         }
     }
 }

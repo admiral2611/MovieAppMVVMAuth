@@ -39,10 +39,10 @@ class HomeViewModelImp @Inject constructor(
         }
     }
 
-    override fun getFooter() {
+    override fun getFooter(page: Int) {
 
-        viewModelScope.launch(Dispatchers.IO){
-            when(val result = repositoryImp.getFootMovie()){
+        viewModelScope.launch(Dispatchers.IO) {
+            when (val result = repositoryImp.getFootMovie(page)) {
                 is ResultWrapper.ErrorResponse -> {
 
                 }

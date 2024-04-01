@@ -9,5 +9,5 @@ interface HomeViewModel {
     val footerLD:LiveData<FootResponse?>
 
     fun getHeader()
-    fun getFooter()
+    fun getFooter(page: Int)
 }

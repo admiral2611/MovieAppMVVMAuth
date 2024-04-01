@@ -1,7 +1,6 @@
 package com.admiral26.movieappmvvmauth.presentation.main_screen.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MediatorLiveData
@@ -15,7 +14,6 @@ import com.admiral26.movieappmvvmauth.data.model.home.footer.FootResponse
 import com.admiral26.movieappmvvmauth.data.model.home.header.HeaderResponse
 import com.admiral26.movieappmvvmauth.databinding.PageHomeBinding
 import com.admiral26.movieappmvvmauth.presentation.main_screen.MainScreenDirections
-import okhttp3.internal.wait
 
 
 class HomePage : BaseFragment(R.layout.page_home) {
@@ -24,8 +22,10 @@ class HomePage : BaseFragment(R.layout.page_home) {
     private val viewModel: HomeViewModel by viewModels<HomeViewModelImp>()
     private val adapter by lazy { MultiAdapter() }
     val data = MediatorLiveData<Pair<HeaderResponse?, FootResponse?>>()
-    //private var isFirstDataAdded = false
-
+    private var header = false
+    private var foot = false
+    private var firstSource = false
+    private val page = 1
 
     override fun onCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -37,7 +37,7 @@ class HomePage : BaseFragment(R.layout.page_home) {
         observe()
         listenerActions()
         viewModel.getHeader()
-        viewModel.getFooter()
+        viewModel.getFooter(page)
     }
 
 
@@ -48,22 +48,11 @@ class HomePage : BaseFragment(R.layout.page_home) {
             findNavController().navigate(MainScreenDirections.actionMainScreenToDetailScreen(it))
 
         }
-    }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("aa11", "onPause: ")
-    }
+        adapter.footerSeeClick = {
+            findNavController().navigate(MainScreenDirections.actionMainScreenToSeeMoreScreen())
+        }
 
-    override fun onStop() {
-        super.onStop()
-        Log.d("aa11", "onStop: ")
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        Log.d("aa11", "onResume: ")
     }
 
     private fun setAdapter() {
@@ -73,27 +62,33 @@ class HomePage : BaseFragment(R.layout.page_home) {
     }
 
 
-
     private fun observe() {
-        var isFirstDataAdded = false
-        data.addSource(viewModel.headerLD) {data1 ->
-
+        if (!header) {
+            data.addSource(viewModel.headerLD) { data1 ->
                 data.value = Pair(data1, data.value?.second)
-
+            }
+            header = true
         }
-        data.addSource(viewModel.footerLD) {data2 ->
-
+        if (!foot) {
+            data.addSource(viewModel.footerLD) { data2 ->
                 data.value = Pair(data.value?.first, data2)
+            }
+            foot = true
         }
 
         data.observe(viewLifecycleOwner) {
             val data1 = it.first
             val data2 = it.second
             if (data1 != null && data2 != null) {
+                if (!firstSource) {
+                    adapter.addData(data1)
+                    adapter.addData(data2)
+                    firstSource = true
+                }
                 binding.progressHome.visibility = View.GONE
-                adapter.addData(data1)
-                adapter.addData(data2)
             }
         }
     }
+
+
 }

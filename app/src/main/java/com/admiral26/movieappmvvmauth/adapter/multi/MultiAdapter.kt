@@ -17,8 +17,7 @@ import com.admiral26.movieappmvvmauth.util.view_pager_transformation.OverlapSlid
 
 class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var onClick: ((id: Int) -> Unit)? = null
-    var headerOnClick: ((id: Int) -> Unit)? = null
-    var footerOnClick: ((id: Int) -> Unit)? = null
+    var footerSeeClick: (() -> Unit)? = null
 
 
     private val data = ArrayList<BaseModel>()
@@ -68,6 +67,9 @@ class MultiAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             adapter.onClick = {
                 onClick?.invoke(it)
+            }
+            binding.seeMore.setOnClickListener {
+                footerSeeClick?.invoke()
             }
         }
     }
